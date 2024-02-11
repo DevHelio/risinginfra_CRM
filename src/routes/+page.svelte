@@ -10,7 +10,7 @@
         type="email"
         name="email"
         autocomplete="off"
-        placeholder="email@example.com"
+        placeholder="email@gmail.com"
       />
     </div>
     <div class="row">
