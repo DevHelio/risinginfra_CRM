@@ -1,73 +1,35 @@
+import { sql } from '@vercel/postgres';
+import { redirect } from '@sveltejs/kit'; //wordt nog gebruikt
 
+export const actions = {
+    default: async ({request}) => {
+        //Alle data processeren dat binnenstroomt van de form
+        const loginData = await request.formData();
+        const email:string =  String(loginData.get('email')).toLowerCase().trim(); //lowercase en trim is nodig voor emails (komen ze cleaner uit, minder errors)
+        const password:string =  String(loginData.get('password'));
 
+        // try catch, catch moet uitgebreider worden 12/2/2024
+        try {
+            console.log(email);
+            const result = await sql`
+            SELECT password FROM users WHERE email = ${email};
+            `;
 
-
-/* import { sql } from "@vercel/postgres";
-
-
-async function seed() {
-    const createTable = await sql`
-    CREATE TABLE IF NOT EXISTS users (
-        "id" serial NOT NULL,
-        "name" varchar(35) NOT NULL,
-        "full_name" varchar(65) NOT NULL,
-        "password" varchar(30) NOT NULL,
-        "email" varchar(35) NOT NULL,
-        CONSTRAINT "users_pk" PRIMARY KEY ("id")
-    ) WITH (
-      OIDS=FALSE
-    );
-    `;
-    console.log("created DB");
-
-    const users = await Promise.all([
-        sql`
-        INSERT INTO users (name, full_name, password, email)
-        VALUES ('admin', 'admin of the system', 'admin123', 'admin@risinginfra.nl')
-        `,
-        sql`
-        INSERT INTO users (name, full_name, password, email)
-        VALUES ('test1', 'test account', 'test123', 'test@risinginfra.nl')
-        `,
-        sql`
-        INSERT INTO users (name, full_name, password, email)
-        VALUES ('alpha', 'alpha of the system', 'alpha123', 'alpha@risinginfra.nl')
-        `
-    ]);
-    console.log(`Seeded ${users.length} users`);
-
-    return {
-        createTable,
-        users
-    };
-}
-
-export async function load() {
-  
-    const startTime = Date.now();
-  
-    try {
-        const { rows: users } = await sql`SELECT * FROM users`;
-        const duration = Date.now() - startTime;
-        
-        return {
-            users: users,
-            duration: duration - startTime
-    };
-  } catch (error) {
-    if (error?.message === `relation users does not exist`) {
-        console.log("Table does not exist");
-
-        await seed();
-        const { rows: users } = await sql`SELECT * FROM users`;
-        const duration = Date.now() - startTime;
-        return {
-            users: users,
-            duration: duration
-        };
-    } else {
-        throw error;
+            if (password === '') {
+                console.log("Wrong password, please try again")
+            }
+            else if (password === result.rows[0].password) {
+                    console.log("SUCCESFULLY LOGED IN");
+                    // Redirect should step here
+                    
+            } else if (result.rowCount === 0) {
+                console.log("Email not found, check for typos!");
+            } else {
+                console.log("Wrong password, please try again");
+            }
+            
+        } catch (err) {
+            console.log(err);
+        }
     }
-  }
 }
- */

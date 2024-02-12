@@ -1,9 +1,10 @@
 <script>
+  export let form;
 </script>
 
 <div class="testloginpage">
   <h1>Login</h1>
-  <form>
+  <form method="POST">
     <div class="row">
       <label for="email">Email</label>
       <input
@@ -14,7 +15,7 @@
       />
     </div>
     <div class="row">
-      <label for="password">Password</label>
+      <label for="password">Wachtwoord</label>
       <input type="password" name="password" />
     </div>
     <button type="submit">Login</button>
