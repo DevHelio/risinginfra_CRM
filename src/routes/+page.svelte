@@ -1,5 +1,4 @@
 <script>
-  export let form;
 </script>
 
 <div class="loginPageWrapper">
