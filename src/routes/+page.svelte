@@ -2,113 +2,104 @@
   export let form;
 </script>
 
-<div class="testloginpage">
-  <h1>Login</h1>
-  <form method="POST">
-    <div class="row">
-      <label for="email">Email</label>
+<div class="loginPageWrapper">
+  <div class="main">
+    <h1>Rising infratechniek</h1>
+    <h3>Login</h3>
+    <form method="POST">
+      <label for="first"></label>
       <input
         type="email"
+        id="first"
         name="email"
-        autocomplete="off"
-        placeholder="email@gmail.com"
+        autocomplete="on"
+        placeholder="email@voorbeeld.com"
+        required
       />
-    </div>
-    <div class="row">
-      <label for="password">Wachtwoord</label>
-      <input type="password" name="password" />
-    </div>
-    <button type="submit">Login</button>
-  </form>
+
+      <label for="password"> </label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your Password"
+        required
+      />
+
+      <div class="wrap">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+    <p>
+      Not registered?
+      <a href="?"> Create an account </a>
+    </p>
+  </div>
 </div>
 
 <style>
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-
-  .testloginpage {
-    font-family: "Open Sans", sans-serif;
-    background: #f9faff;
-    color: #3a3c47;
-    line-height: 1.6;
+  .loginPageWrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f3f3f3;
+    flex-direction: column;
     margin: 0;
-    padding: 0;
+  }
+
+  .main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
   }
 
   h1 {
-    margin-top: 48px;
+    color: #fcc236;
   }
 
-  form {
-    background: #fff;
-    max-width: 360px;
+  label {
+    display: block;
     width: 100%;
-    padding: 58px 44px;
-    border: 1px solid #e1e2f0;
-    border-radius: 4px;
-    box-shadow: 0 0 5px 0 rgba(42, 45, 48, 0.12);
-    transition: all 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
   }
 
-  .row {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-
-  .row label {
-    font-size: 13px;
-    color: #8086a9;
-  }
-
-  .row input {
-    flex: 1;
-    padding: 13px;
-    border: 1px solid #d6d8e6;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.2s ease-out;
-  }
-
-  .row input:focus {
-    outline: none;
-    box-shadow: inset 2px 2px 5px 0 rgba(42, 45, 48, 0.12);
-  }
-
-  .row input::placeholder {
-    color: #c8cddf;
+  input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
   }
 
   button {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    background: #15c39a;
-    color: #fff;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    font-family: "Open Sans", sans-serif;
+    padding: 15px;
+    border-radius: 10px;
     margin-top: 15px;
-    transition: background 0.2s ease-out;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #fcc236;
+    width: 100%;
+    font-size: 16px;
   }
 
-  button:hover {
-    background: #55d3ac;
-  }
-
-  @media (max-width: 458px) {
-    .testloginpage {
-      margin: 0 18px;
-    }
-
-    form {
-      background: #f9faff;
-      border: none;
-      box-shadow: none;
-      padding: 20px 0;
-    }
+  .wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

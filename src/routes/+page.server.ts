@@ -1,16 +1,19 @@
-import { sql } from '@vercel/postgres';
-import { redirect } from '@sveltejs/kit'; //wordt nog gebruikt
+import { POSTGRES_URL } from '$env/static/private';
+import { sql } from '@vercel/postgres';//wordt nog gebruikt
 
 export const actions = {
     default: async ({request}) => {
+
         //Alle data processeren dat binnenstroomt van de form
         const loginData = await request.formData();
         const email:string =  String(loginData.get('email')).toLowerCase().trim(); //lowercase en trim is nodig voor emails (komen ze cleaner uit, minder errors)
         const password:string =  String(loginData.get('password'));
 
+
         // try catch, catch moet uitgebreider worden 12/2/2024
         try {
             console.log(email);
+            console.log(password);
             const result = await sql`
             SELECT password FROM users WHERE email = ${email};
             `;
